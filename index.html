@@ -13,8 +13,6 @@
       />
       <title> 藥</title>
   <meta name="generator" content="hexo-theme-ayer">
-      
-      <link rel="shortcut icon" href="/favicon.ico" />
        
 <link rel="stylesheet" href="/dist/main.css">
 
@@ -49,6 +47,17 @@
 <body>
   <div id="app">
     
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
       
     <main class="content on">
       
@@ -67,7 +76,7 @@
       <h1><a href="/">藥</a></h1>
       <div id="subtitle-box">
         
-        <span id="subtitle"></span>
+          <span id="subtitle">更吹落,星如雨</span>
         
       </div>
       <div>
@@ -82,26 +91,9 @@
 
 
 
-<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
-
 
 <!-- Subtitle -->
 
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['更吹落,星如雨', '', ''],
-        startDelay: 0,
-        typeSpeed: 200,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
 <div id="main">
   <section class="outer">
   
@@ -334,17 +326,17 @@
 <!-- #reward -->
 <div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <p class="reward-p"><i class="ri-cup-line"></i>v我50疯狂星期四</p>
   <div class="reward-box">
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/ayer.jpg">
+      <img class="reward-img" src="/images/zfb.jpg">
       <span class="reward-type">支付宝</span>
     </div>
     
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/ayer.jpg">
+      <img class="reward-img" src="/images/wechat.png">
       <span class="reward-type">微信</span>
     </div>
     
@@ -485,6 +477,10 @@
 
 <!-- ClickBoom1 -->
 
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
 <!-- ClickBoom2 -->
 
 <!-- CodeCopy -->
