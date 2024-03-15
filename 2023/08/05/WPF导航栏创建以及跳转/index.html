@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="false" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>WPF导航栏创建以及跳转 | Cheng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="导航栏的创建和跳转我们做一个程序时,会有很多页面来回跳转的情况,下面使用Prism框架进行页面之间的跳转     需要了解  Prism中区域的概念 控件ContentControl的基本使用  1.布局项目结构1.Views (放视图,主窗口放在这里面) 2.ViewModels (业务逻辑写在这里面,并创建对应视图的ViewModel,例如MainViewModel) 3.Models (创建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WPF导航栏创建以及跳转">
+<meta property="og:url" content="http://example.com/2023/08/05/WPF%E5%AF%BC%E8%88%AA%E6%A0%8F%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E8%B7%B3%E8%BD%AC/index.html">
+<meta property="og:site_name" content="Cheng">
+<meta property="og:description" content="导航栏的创建和跳转我们做一个程序时,会有很多页面来回跳转的情况,下面使用Prism框架进行页面之间的跳转     需要了解  Prism中区域的概念 控件ContentControl的基本使用  1.布局项目结构1.Views (放视图,主窗口放在这里面) 2.ViewModels (业务逻辑写在这里面,并创建对应视图的ViewModel,例如MainViewModel) 3.Models (创建">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/baiyi0409/cdn/articleimgs/image-20230808161107696.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/baiyi0409/cdn/articleimgs/image-20230809080317903.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/baiyi0409/cdn/articleimgs/image-20230809205603709.png">
+<meta property="article:published_time" content="2023-08-05T06:26:35.000Z">
+<meta property="article:modified_time" content="2024-03-15T00:06:36.319Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="WPF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/baiyi0409/cdn/articleimgs/image-20230808161107696.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Cheng" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+   
+  <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Cheng </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">首页</a>
+    
+      <a class="main-nav-link" href="/archives">归档</a>
+    
+      <a class="main-nav-link" href="/about">关于</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">首页</a>
+    
+      <a class="nav-dropdown-link" href="/archives">归档</a>
+    
+      <a class="nav-dropdown-link" href="/about">关于</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+  </div>
+  <div id="main-grid" class="  ">
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Cheng </div>
+      <!-- <div class="dot"></div> -->
+      <div class="subtitle">.Net and Desktop App Developer </div>
+      <!-- <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>   -->
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/Net/">
+                .Net
+                <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/SqlSever/">
+                SqlSever
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/WebApi/">
+                WebApi
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/WPF/">
+                WPF
+                <div class="category-count">7</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/AForge/" rel="tag">AForge</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Epplus%EF%BC%8CAspose/" rel="tag">Epplus，Aspose</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Freesql/" rel="tag">Freesql</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/MaterialDesign/" rel="tag">MaterialDesign</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Prism/" rel="tag">Prism</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SHA256/" rel="tag">SHA256</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SM2/" rel="tag">SM2</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Serilog/" rel="tag">Serilog</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SqlSever/" rel="tag">SqlSever</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WPF/" rel="tag">WPF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/WebApi/" rel="tag">WebApi</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-WPF导航栏创建以及跳转" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        WPF导航栏创建以及跳转
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-08-05T06:26:35.000Z" itemprop="datePublished">2023-08-05</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/WPF/">WPF</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            9.7k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WPF/" rel="tag">WPF</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="导航栏的创建和跳转"><a href="#导航栏的创建和跳转" class="headerlink" title="导航栏的创建和跳转"></a>导航栏的创建和跳转</h1><p>我们做一个程序时,会有很多页面来回跳转的情况,下面使用Prism框架进行页面之间的跳转    </p>
+<p>需要了解</p>
+<ul>
+<li>Prism中区域的概念</li>
+<li>控件ContentControl的基本使用</li>
+</ul>
+<h2 id="1-布局"><a href="#1-布局" class="headerlink" title="1.布局"></a>1.布局</h2><h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>1.Views (放视图,主窗口放在这里面)</p>
+<p>2.ViewModels (业务逻辑写在这里面,并创建对应视图的ViewModel,例如MainViewModel)</p>
+<p>3.Models (创建的模型类)</p>
+<p><strong>主窗口叫MainWindow的,记得改一下名称 MainView</strong></p>
+<h2 id="新建导航类"><a href="#新建导航类" class="headerlink" title="新建导航类"></a>新建导航类</h2><p>在Models中创建一个导航类NavigateModel</p>
+<p><img src="https://cdn.jsdelivr.net/gh/baiyi0409/cdn/articleimgs/image-20230808161107696.png" alt="image-20230808161107696"></p>
+<p>代码如下:</p>
+<p>这里用Prism框架实现了MVVM,下面也会用到Prism区域的概念,所以推荐安装并引用Prsim框架</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NavigateModel</span>:<span class="title">BindableBase</span></span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">private</span> <span class="built_in">string</span> icon;</span><br><span class="line">      <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">      <span class="comment"><span class="doctag">///</span> 图标</span></span><br><span class="line">      <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">      <span class="keyword">public</span> <span class="built_in">string</span> Icon</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">get</span> &#123; <span class="keyword">return</span> icon; &#125;</span><br><span class="line">          <span class="keyword">set</span> &#123; icon = <span class="keyword">value</span>; RaisePropertyChanged(); &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">private</span> <span class="built_in">string</span> title;</span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 标题</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">string</span> Title</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">get</span> &#123; <span class="keyword">return</span> title; &#125;</span><br><span class="line">	<span class="keyword">set</span> &#123; title = <span class="keyword">value</span>; RaisePropertyChanged(); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">private</span> <span class="built_in">string</span> nameSpace;</span><br><span class="line">      <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">      <span class="comment"><span class="doctag">///</span> 命名空间</span></span><br><span class="line">      <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">      <span class="keyword">public</span> <span class="built_in">string</span> NameSpace</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">get</span> &#123; <span class="keyword">return</span> nameSpace; &#125;</span><br><span class="line">          <span class="keyword">set</span> &#123; nameSpace = <span class="keyword">value</span>; RaisePropertyChanged(); &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="新建业务逻辑类"><a href="#新建业务逻辑类" class="headerlink" title="新建业务逻辑类"></a>新建业务逻辑类</h2><p>在ViewModels中创建主窗口对应的逻辑类,我这里创建的是<strong>MainViewModel</strong></p>
+<p>然后在MainViewModel中补充导航的业务逻辑</p>
+<p>1.我们需要将刚刚创建的导航模型类,变成一个动态集合,方便注入到控件中去</p>
+<p>2.需要一个命令来实现导航跳转的业务逻辑</p>
+<h4 id="创建动态集合"><a href="#创建动态集合" class="headerlink" title="创建动态集合"></a>创建动态集合</h4><p><img src="https://cdn.jsdelivr.net/gh/baiyi0409/cdn/articleimgs/image-20230809080317903.png" alt="image-20230809080317903"></p>
+<p>ObservableCollection 也就是动态集合,其中<Model>里面的东西是我们自己写好的导航类</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">YaoDemo.ViewModels</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MainViewModel</span>:<span class="title">BindableBase</span></span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">//区域管理功能</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IRegionManager regionManager;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MainViewModel</span>(<span class="params">IRegionManager regionManager</span>)  <span class="comment">//依赖注入区域管理功能</span></span></span><br><span class="line">		&#123;</span><br><span class="line">			CreateNavigate();</span><br><span class="line">            <span class="keyword">this</span>.regionManager = regionManager;  <span class="comment">//生成区域管理字段</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">private</span> ObservableCollection&lt;NavigateModel&gt; navigatebar;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 导航栏集合</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="keyword">public</span> ObservableCollection&lt;NavigateModel&gt; NavigateBar</span><br><span class="line">        &#123;</span><br><span class="line">			<span class="keyword">get</span> &#123; <span class="keyword">return</span> navigatebar; &#125;</span><br><span class="line">			<span class="keyword">set</span> &#123; navigatebar = <span class="keyword">value</span>; RaisePropertyChanged(); &#125;</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 创建实例并注入视图</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">CreateNavigate</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            NavigateBar = <span class="keyword">new</span> ObservableCollection&lt;NavigateModel&gt;();</span><br><span class="line">            NavigateBar.Add(<span class="keyword">new</span> NavigateModel &#123; Icon = <span class="string">&quot;cog&quot;</span>, Title = <span class="string">&quot;Home&quot;</span>, NameSpace = <span class="string">&quot;HomeView&quot;</span> &#125;);</span><br><span class="line">            NavigateBar.Add(<span class="keyword">new</span> NavigateModel &#123; Icon = <span class="string">&quot;cog&quot;</span>, Title = <span class="string">&quot;Text&quot;</span>, NameSpace = <span class="string">&quot;TextView&quot;</span> &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们先在主视图上显示出来导航栏</p>
+<p>在<strong>MainView</strong>中进行布局，将界面分成两个列，代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;Window</span><br><span class="line">    x:Class=&quot;YaoDemo.Views.MainView&quot;</span><br><span class="line">    xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span><br><span class="line">    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span><br><span class="line">    xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;</span><br><span class="line">    xmlns:ext=&quot;clr-namespace:YaoDemo.Extension&quot;</span><br><span class="line">    xmlns:i=&quot;http://schemas.microsoft.com/xaml/behaviors&quot;</span><br><span class="line">    xmlns:local=&quot;clr-namespace:YaoDemo.Views&quot;</span><br><span class="line">    xmlns:fluent=&quot;clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF&quot;</span><br><span class="line">    xmlns:materialDesign=&quot;http://materialdesigninxaml.net/winfx/xaml/themes&quot;</span><br><span class="line">    xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span><br><span class="line">    xmlns:prism=&quot;http://prismlibrary.com/&quot;</span><br><span class="line">    x:Name=&quot;main&quot;</span><br><span class="line">    d:Height=&quot;1080&quot;</span><br><span class="line">    d:Width=&quot;1920&quot;</span><br><span class="line">    prism:ViewModelLocator.AutoWireViewModel=&quot;True&quot;</span><br><span class="line">    WindowStartupLocation=&quot;CenterScreen&quot;</span><br><span class="line">    WindowState=&quot;Maximized&quot;</span><br><span class="line">    mc:Ignorable=&quot;d&quot;&gt;</span><br><span class="line">    &lt;Grid&gt;</span><br><span class="line">        &lt;Grid.ColumnDefinitions&gt;</span><br><span class="line">            &lt;ColumnDefinition Width=&quot;0.2*&quot; /&gt;</span><br><span class="line">            &lt;ColumnDefinition /&gt;</span><br><span class="line">        &lt;/Grid.ColumnDefinitions&gt;</span><br><span class="line">        &lt;!--  导航栏  --&gt;</span><br><span class="line">        &lt;Grid  Grid.Column=&quot;0&quot;&gt;</span><br><span class="line">            &lt;!--  导航栏显示区域,等会我们用List填充进去  --&gt;</span><br><span class="line">        &lt;/Grid&gt;</span><br><span class="line">        &lt;!--  内容显示区  --&gt;</span><br><span class="line">        &lt;Grid Background=&quot;#F9F9F9&quot; Grid.Column=&quot;1&quot;&gt;</span><br><span class="line">            &lt;!--  内容显示区，等会我们用ControlContent填充进去  --&gt;</span><br><span class="line">        &lt;/Grid&gt;</span><br><span class="line">    &lt;/Grid&gt;</span><br><span class="line">&lt;/Window&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="详细的ListBox如下"><a href="#详细的ListBox如下" class="headerlink" title="详细的ListBox如下:"></a>详细的ListBox如下:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;ListBox</span><br><span class="line">    d:ItemsSource=&quot;&#123;d:SampleData ItemCount=5&#125;&quot;</span><br><span class="line">    ItemContainerStyle=&quot;&#123;StaticResource MyListBoxItemStyle&#125;&quot;</span><br><span class="line">    ItemsSource=&quot;&#123;Binding NavigateBar&#125;&quot;&gt;</span><br><span class="line">    &lt;!--  行为，达到触发SelectionChanged事件的效果，在这里绑定的导航命令  --&gt;</span><br><span class="line">    &lt;i:Interaction.Triggers&gt;</span><br><span class="line">        &lt;i:EventTrigger EventName=&quot;SelectionChanged&quot;&gt;</span><br><span class="line">            &lt;i:InvokeCommandAction Command=&quot;&#123;Binding NavigateCommand&#125;&quot; CommandParameter=&quot;&#123;Binding SelectedItem, RelativeSource=&#123;RelativeSource Mode=FindAncestor, AncestorType=ListBox&#125;&#125;&quot; /&gt;</span><br><span class="line">        &lt;/i:EventTrigger&gt;</span><br><span class="line">    &lt;/i:Interaction.Triggers&gt;</span><br><span class="line">    &lt;!--  每列模板  --&gt;</span><br><span class="line">    &lt;ListBox.ItemTemplate&gt;</span><br><span class="line">        &lt;DataTemplate&gt;</span><br><span class="line">            &lt;StackPanel Height=&quot;30&quot; Orientation=&quot;Horizontal&quot;&gt;</span><br><span class="line">                &lt;materialDesign:PackIcon</span><br><span class="line">                    Margin=&quot;20,0,0,0&quot;</span><br><span class="line">                    HorizontalAlignment=&quot;Center&quot;</span><br><span class="line">                    VerticalAlignment=&quot;Center&quot;</span><br><span class="line">                    Kind=&quot;&#123;Binding Icon&#125;&quot; /&gt;</span><br><span class="line">                &lt;TextBlock</span><br><span class="line">                    Margin=&quot;20,0,0,0&quot;</span><br><span class="line">                    HorizontalAlignment=&quot;Center&quot;</span><br><span class="line">                    VerticalAlignment=&quot;Center&quot;</span><br><span class="line">                    Text=&quot;&#123;Binding Title&#125;&quot; /&gt;</span><br><span class="line">            &lt;/StackPanel&gt;</span><br><span class="line">        &lt;/DataTemplate&gt;</span><br><span class="line">    &lt;/ListBox.ItemTemplate&gt;</span><br><span class="line">&lt;/ListBox&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>这里需要引用包 xmlns:i&#x3D;”<a target="_blank" rel="noopener" href="http://schemas.microsoft.com/xaml/behaviors">http://schemas.microsoft.com/xaml/behaviors</a>“</strong></p>
+<p><strong>另外这里的是用了MaterialDesign的图标,如果没有用的话，可以直接删掉，只写TextBlock显示导航标题</strong></p>
+<h4 id="详细的ContentControl"><a href="#详细的ContentControl" class="headerlink" title="详细的ContentControl:"></a>详细的ContentControl:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--主要显示控件--&gt;</span><br><span class="line">&lt;ContentControl Margin=&quot;15&quot; prism:RegionManager.RegionName=&quot;MainViewRegion&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>这里先引用包 xmlns:prism&#x3D;”<a target="_blank" rel="noopener" href="http://prismlibrary.com/">http://prismlibrary.com/</a>“   然后给这个区域命名MainViewRegion</strong></p>
+<h4 id="创建导航命令"><a href="#创建导航命令" class="headerlink" title="创建导航命令"></a>创建导航命令</h4><p>在<strong>MainViewModel</strong>中补充导航实现的业务逻辑</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">YaoDemo.ViewModels</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MainViewModel</span>:<span class="title">BindableBase</span></span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">//区域管理功能</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IRegionManager regionManager;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MainViewModel</span>(<span class="params">IRegionManager regionManager</span>)</span></span><br><span class="line">		&#123;</span><br><span class="line">			CreateNavigate();</span><br><span class="line">            <span class="keyword">this</span>.regionManager = regionManager;</span><br><span class="line">            <span class="comment">//这是使用命令</span></span><br><span class="line">            NavigateCommand = <span class="keyword">new</span> DelegateCommand&lt;NavigateModel&gt;(Navigate);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">private</span> ObservableCollection&lt;NavigateModel&gt; navigatebar;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 导航栏集合</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="keyword">public</span> ObservableCollection&lt;NavigateModel&gt; NavigateBar</span><br><span class="line">        &#123;</span><br><span class="line">			<span class="keyword">get</span> &#123; <span class="keyword">return</span> navigatebar; &#125;</span><br><span class="line">			<span class="keyword">set</span> &#123; navigatebar = <span class="keyword">value</span>; RaisePropertyChanged(); &#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">CreateNavigate</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            NavigateBar = <span class="keyword">new</span> ObservableCollection&lt;NavigateModel&gt;();</span><br><span class="line">            NavigateBar.Add(<span class="keyword">new</span> NavigateModel &#123; Icon = <span class="string">&quot;cog&quot;</span>, Title = <span class="string">&quot;Home&quot;</span>, NameSpace = <span class="string">&quot;HomeView&quot;</span> &#125;);</span><br><span class="line">            NavigateBar.Add(<span class="keyword">new</span> NavigateModel &#123; Icon = <span class="string">&quot;cog&quot;</span>, Title = <span class="string">&quot;Text&quot;</span>, NameSpace = <span class="string">&quot;TextView&quot;</span> &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这是添加的命令</span></span><br><span class="line">        <span class="keyword">public</span> DelegateCommand&lt;NavigateModel&gt; NavigateCommand &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 导航命令</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Navigate</span>(<span class="params">NavigateModel item</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (item == <span class="literal">null</span> || <span class="built_in">string</span>.IsNullOrWhiteSpace(item.NameSpace))</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            regionManager.Regions[<span class="string">&quot;MainViewRegion&quot;</span>].RequestNavigate(item.NameSpace);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>regionManager.Regions[“MainViewRegion”].RequestNavigate(item.NameSpace);</p>
+<p><strong>这里你前面布局写的什么名字，这里就写什么</strong></p>
+<h1 id="2-在App-xaml-cs文件中添加写好的视图"><a href="#2-在App-xaml-cs文件中添加写好的视图" class="headerlink" title="2.在App.xaml.cs文件中添加写好的视图"></a>2.在App.xaml.cs文件中添加写好的视图</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">YaoDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">App</span> : <span class="title">PrismApplication</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> Window <span class="title">CreateShell</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Container.Resolve&lt;MainView&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//我这里写了两个界面用来测试 分别设置了不同的背景颜色</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">RegisterTypes</span>(<span class="params">IContainerRegistry containerRegistry</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            containerRegistry.RegisterForNavigation&lt;HomeView,HomeViewModel&gt;(); <span class="comment">//没有ViewModel直接删掉即可</span></span><br><span class="line">            containerRegistry.RegisterForNavigation&lt;TextView&gt;();   <span class="comment">//可以只注入页面</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="最后可以看见我点击Home时跳转到了我写好的页面"><a href="#最后可以看见我点击Home时跳转到了我写好的页面" class="headerlink" title="最后可以看见我点击Home时跳转到了我写好的页面"></a><strong>最后可以看见我点击Home时跳转到了我写好的页面</strong></h5><p><img src="https://cdn.jsdelivr.net/gh/baiyi0409/cdn/articleimgs/image-20230809205603709.png" alt="image-20230809205603709"></p>
+<p><strong>补充:这是ListBox的自定义样式，在App.xaml中写好配置的Key，在视图界面就可以用Key调用这个样式</strong>    </p>
+<p>对应的MainView主视图里，ListBox的 ItemContainerStyle&#x3D;”{StaticResource MyListBoxItemStyle}” </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;prism:PrismApplication</span><br><span class="line">    x:Class=&quot;YaoDemo.App&quot;</span><br><span class="line">    xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span><br><span class="line">    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span><br><span class="line">    xmlns:local=&quot;clr-namespace:YaoDemo&quot;</span><br><span class="line">    xmlns:prism=&quot;http://prismlibrary.com/&quot;&gt;</span><br><span class="line">    &lt;Application.Resources&gt;</span><br><span class="line">        &lt;ResourceDictionary&gt;</span><br><span class="line">            &lt;ResourceDictionary.MergedDictionaries&gt;</span><br><span class="line">            &lt;!--  MyListBoxItemStyle  --&gt;</span><br><span class="line">            &lt;Style x:Key=&quot;MyListBoxItemStyle&quot; TargetType=&quot;ListBoxItem&quot;&gt;</span><br><span class="line">                &lt;Setter Property=&quot;Margin&quot; Value=&quot;0,0,0,5&quot; /&gt;</span><br><span class="line">                &lt;Setter Property=&quot;MinHeight&quot; Value=&quot;40&quot; /&gt;</span><br><span class="line">                &lt;Setter Property=&quot;Template&quot;&gt;</span><br><span class="line">                    &lt;Setter.Value&gt;</span><br><span class="line">                        &lt;ControlTemplate TargetType=&quot;&#123;x:Type ListBoxItem&#125;&quot;&gt;</span><br><span class="line">                            &lt;Grid&gt;</span><br><span class="line">                                &lt;Border</span><br><span class="line">                                    x:Name=&quot;borderHeader&quot;</span><br><span class="line">                                    Width=&quot;4&quot;</span><br><span class="line">                                    Margin=&quot;2,10&quot;</span><br><span class="line">                                    HorizontalAlignment=&quot;Left&quot;</span><br><span class="line">                                    CornerRadius=&quot;2&quot; /&gt;</span><br><span class="line">                                &lt;Border x:Name=&quot;border&quot; CornerRadius=&quot;5&quot; /&gt;</span><br><span class="line">                                &lt;ContentPresenter HorizontalAlignment=&quot;&#123;TemplateBinding HorizontalAlignment&#125;&quot; VerticalAlignment=&quot;&#123;TemplateBinding VerticalAlignment&#125;&quot; /&gt;</span><br><span class="line">                            &lt;/Grid&gt;</span><br><span class="line"></span><br><span class="line">                            &lt;ControlTemplate.Triggers&gt;</span><br><span class="line">                                &lt;Trigger Property=&quot;IsSelected&quot; Value=&quot;True&quot;&gt;</span><br><span class="line">                                    &lt;Setter TargetName=&quot;borderHeader&quot; Property=&quot;BorderBrush&quot; Value=&quot;&#123;DynamicResource PrimaryHueLightBrush&#125;&quot; /&gt;</span><br><span class="line">                                    &lt;Setter TargetName=&quot;borderHeader&quot; Property=&quot;Background&quot; Value=&quot;&#123;DynamicResource PrimaryHueLightForegroundBrush&#125;&quot; /&gt;</span><br><span class="line">                                    &lt;Setter TargetName=&quot;border&quot; Property=&quot;Background&quot; Value=&quot;&#123;DynamicResource PrimaryHueLightBrush&#125;&quot; /&gt;</span><br><span class="line">                                    &lt;Setter TargetName=&quot;border&quot; Property=&quot;Opacity&quot; Value=&quot;0.6&quot; /&gt;</span><br><span class="line">                                &lt;/Trigger&gt;</span><br><span class="line">                                &lt;Trigger Property=&quot;IsMouseOver&quot; Value=&quot;True&quot;&gt;</span><br><span class="line">                                    &lt;Setter TargetName=&quot;border&quot; Property=&quot;Background&quot; Value=&quot;&#123;DynamicResource PrimaryHueLightBrush&#125;&quot; /&gt;</span><br><span class="line">                                    &lt;Setter TargetName=&quot;border&quot; Property=&quot;Opacity&quot; Value=&quot;0.4&quot; /&gt;</span><br><span class="line">                                &lt;/Trigger&gt;</span><br><span class="line">                            &lt;/ControlTemplate.Triggers&gt;</span><br><span class="line">                        &lt;/ControlTemplate&gt;</span><br><span class="line">                    &lt;/Setter.Value&gt;</span><br><span class="line">                &lt;/Setter&gt;</span><br><span class="line">            &lt;/Style&gt;</span><br><span class="line">        &lt;/ResourceDictionary&gt;</span><br><span class="line">    &lt;/Application.Resources&gt;</span><br><span class="line">&lt;/prism:PrismApplication&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果看不懂的话,需要补课控件模板，数据模板，触发器</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/08/10/WPF%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93/"
+      title="WPF配置数据库"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        WPF配置数据库
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/08/02/WPF%E6%95%99%E7%A8%8B%E4%B9%8B%E7%99%BB%E5%BD%95/"
+      title="WPF教程之登录"
+     >
+
+    <p class="title-text">
+      
+        WPF教程之登录
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 Cheng<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
