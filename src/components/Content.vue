@@ -68,19 +68,19 @@
             <h1
               class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-2 leading-tight"
             >
-              Nexmoe
+              {{ hero.name }}
             </h1>
             <div class="mb-6 w-full">
               <p
                 class="text-gray-800 dark:text-gray-300 whitespace-pre-wrap text-sm sm:text-base leading-relaxed max-w-prose"
               >
-                {{ heroText }}
+                {{ hero.text }}
               </p>
             </div>
             <a
               class="-ml-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 sm:px-3 sm:py-1 text-sm leading-6 text-black ring-1 ring-zinc-200 bg-white ring-inset hover:bg-zinc-50 active:bg-zinc-100 transition-colors duration-200 touch-manipulation min-h-[44px] sm:min-h-auto"
               target="_blank"
-              href="https://bonjour.bio/nexmoe"
+              href=""
             >
               联系我
               <div
@@ -107,46 +107,51 @@
     </div>
 
     <!-- feature部分 -->
-
     <div id="feature">
-      <MaskText :title="featureText" :description="featureDescription" />
+      <MaskText :title="feature.text" :description="feature.description" />
     </div>
 
     <!-- short部分 -->
     <div id="shorts" class="container max-w-6xl mx-auto">
-      <MaskText title="Shorts" description="please input some" />
+      <MaskText :title="shorts.text" :description="shorts.description" />
     </div>
 
     <!-- poe部分 -->
-    <Poe/>
+    <div id="poe">
+      <Poe/>
+    </div>
   </div>
+
+
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref , reactive} from "vue";
 import MaskText from './MaskText.vue';
 import Poe from './Poe.vue';
 
 //hero介绍
-const heroText = `
-00 后白日梦想家，ADHD
-共绩算力产品经理兼运营兼设计师兼开发
-致力于打造最酷的弹性算力
+const hero = reactive({
+  name: `yao`,
+  text: `00 后小镇程序员
+.Net 应用开发者，半个全栈工程师
 
-Github 16k+ ✨
-Nexmoe = Next + Moe
-
-种地类游戏爱好者（饥荒、星露谷、城市天际线、戴森球）`;
+徒步爱好者🏔`
+})
 
 //feature部分
-const featureText = `
-简单了解一下我
-闯荡、勇敢尝试、不放弃
-`; 
-const featureDescription = "You know, my mother used to say that risk-takers defy destine."
+const feature = reactive({
+  text:`简单了解一下我
+闯荡、勇敢尝试、不放弃`,
+  description:`You know, my mother used to say that risk-takers defy destine.`
+})
 
 //shorts部分
-
+const shorts = reactive({
+  text:`欲买桂花同载酒
+终不似，少年游`,
+  description:`The wind never stops blowing we just forget how to run.`
+})
 
 
 // 导航配置
