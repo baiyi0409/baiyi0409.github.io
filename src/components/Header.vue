@@ -9,7 +9,7 @@
                         <img src="/src/assets/avatar.jpg"
                             alt="头像" width="940" height="940" loading="lazy"
                             decoding="async" class="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover"> 
-                        <span class="text-lg md:text-xl hidden sm:inline">Demo</span>
+                        <span class="text-lg md:text-xl hidden sm:inline">{{sitename}}</span>
                     </a>
                 </div> 
             </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+const sitename = ref('藥')
 
 </script>
 
