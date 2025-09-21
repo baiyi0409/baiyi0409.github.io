@@ -184,7 +184,6 @@ const hero = reactive({
 徒步登山爱好者🗻
 相信最好的风景一定在路上
 
-喜欢武侠世界
 少年负剑走风雪，老来听雨忆江湖`
 })
 
@@ -214,18 +213,18 @@ const feature_movie = reactive(
   tagList:['科幻','动画','剧情','悬疑'],
   count:'12+ 部收藏',
   movieList:[
-    { title:'画江湖之不良人', href:'https://movie.douban.com/subject/35801116/', img:'', webp:'', avif:'' },
-    { title:'这个杀手不太冷', href:'https://movie.douban.com/subject/1295644/', img:'', webp:'',avif:'' },
-    { title:'肖申克的救赎', href:'https://movie.douban.com/subject/1292052/', img:'', webp:'',avif:'' },
-    { title:'盗梦空间', href:'https://movie.douban.com/subject/3541415/', img:'', webp:'',avif:'' },
-    { title:'星际穿越', href:'https://movie.douban.com/subject/3541415/', img:'', webp:'',avif:'' },
-    { title:'头号玩家', href:'https://movie.douban.com/subject/4920389/', img:'', webp:'',avif:'' },
-    { title:'烈日灼心', href:'https://movie.douban.com/subject/24719063/', img:'', webp:'',avif:'' },
-    { title:'风犬少年的天空', href:'https://movie.douban.com/subject/30413128/', img:'', webp:'',avif:'' },
-    { title:'移动迷宫', href:'https://movie.douban.com/subject/21349345/', img:'', webp:'',avif:'' },
-    { title:'熔炉', href:'https://movie.douban.com/subject/5912992/', img:'', webp:'',avif:'' },
-    { title:'阳光灿烂的日子', href:'https://movie.douban.com/subject/1291875/', img:'', webp:'',avif:'' },
-    { title:'白夜追凶', href:'https://movie.douban.com/subject/26883064/', img:'https://img3.doubanio.com/view/photo/l/public/p2554352027.jpg', webp:'https://img3.doubanio.com/view/photo/l/public/p2554352027.webp',avif:'' },
+    { title:'画江湖之不良人', href:'https://movie.douban.com/subject/35801116/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2877529911.webp', avif:'' },
+    { title:'这个杀手不太冷', href:'https://movie.douban.com/subject/1295644/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2913554676.webp',avif:'' },
+    { title:'肖申克的救赎', href:'https://movie.douban.com/subject/1292052/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p480747492.webp',avif:'' },
+    { title:'盗梦空间', href:'https://movie.douban.com/subject/3541415/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p524109102.webp',avif:'' },
+    { title:'星际穿越', href:'https://movie.douban.com/subject/3541415/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2614988097.webp',avif:'' },
+    { title:'头号玩家', href:'https://movie.douban.com/subject/4920389/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2885725226.webp',avif:'' },
+    { title:'烈日灼心', href:'https://movie.douban.com/subject/24719063/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2262236348.webp',avif:'' },
+    { title:'风犬少年的天空', href:'https://movie.douban.com/subject/30413128/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2610396866.webp',avif:'' },
+    { title:'移动迷宫', href:'https://movie.douban.com/subject/21349345/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2201485029.webp',avif:'' },
+    { title:'熔炉', href:'https://movie.douban.com/subject/5912992/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p1363250216.webp',avif:'' },
+    { title:'阳光灿烂的日子', href:'https://movie.douban.com/subject/1291875/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2582722114.webp',avif:'' },
+    { title:'白夜追凶', href:'https://movie.douban.com/subject/26883064/', img:'', webp:'https://raw.githubusercontent.com/baiyi0409/cdn/refs/heads/main/blog/movie/p2554352027.webp',avif:'' },
   ]
 })
 
