@@ -316,27 +316,26 @@ const feature_herocard = reactive({
 // 控制滚动状态
 const isScrolling = ref(true);
 
-// 原始事件列表 - 推荐用 ref 包装数组
 const originalEvents = ref([
   {
     title: "WinForm",
-    description: "Q4重点项目kickoff",
+    description: "Windows平台下最便捷的图形化应用框架",
   },
   {
     title: "WPF",
-    description: "ABC公司新功能展示",
+    description: "MVVM设计模式的实践先驱",
   },
   {
     title: "Avalonia",
-    description: "同步进展与阻塞项",
+    description: "跨平台的客户端应用框架",
   },
   {
     title: "Blazor",
-    description: "新版UI走查",
+    description: "基于Razor和C#语言的Web应用开发框架",
   },
   {
     title: "Vue",
-    description: "核心模块重构",
+    description: "基于JavaScript的主流Web应用开发框架",
   }
 ]);
 
