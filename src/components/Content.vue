@@ -93,7 +93,7 @@
         <div
           class="col-span-12 md:col-span-12 grid grid-cols-1 md:grid-cols-[8fr_4fr] gap-4"
         >
-          <div class="bg-white rounded-3xl p-6 md:p-8">
+          <div class="bg-white rounded-2xl p-5 flex flex-col justify-between">
             <!-- 基本信息 -->
             <div class="h-full flex flex-col justify-between">
               <div>
@@ -165,7 +165,7 @@
             </div>
           </div>
 
-          <div class="bg-white rounded-3xl p-6 md:p-8">
+          <div class="bg-white rounded-2xl p-5 flex flex-col justify-between min-h-[150px]">
             <div
               class="relative h-full overflow-hidden rounded-xl to-indigo-50"
             >
