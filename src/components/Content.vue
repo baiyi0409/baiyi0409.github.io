@@ -323,9 +323,9 @@ const hero = reactive({
 主要方向上位机开发，后端开发
 
 徒步登山爱好者🗻
-相信最好的风景一定在路上
+键盘组装员，游戏体验家
 
-少年负剑走风雪，老来听雨忆江湖`,
+想要寻找一种山野和城市的内在平衡`,
 });
 
 //feature部分
@@ -553,6 +553,16 @@ const articles = reactive([
     虽然有的项目很久不更新了，但思路还是蛮现代的...`,
     blog_url:'',
     time:'2025-05-09'
+  },
+  {
+    url:'https://www.yuque.com/u39099012/wou7u4/wq9rxsgu9ggifhhn',
+    title:'Blazor .Net跨平台Web方案',
+    content:`.Net程序员低成本开发Web应用
+    和Vue类似，但目前生态不是很完善，仍然需要熟悉html+css+Js
+    使用Razor语法可能比Vue指令更好理解，比较适合中小型的后台项目
+    没有专门的前端岗，一般都是.Net后端全栈在使用，和vue比较相似`,
+    blog_url:'',
+    time:'2024-09-06'
   }
 ])
 
