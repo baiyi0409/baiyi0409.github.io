@@ -320,12 +320,9 @@ const hero = reactive({
   name: `藥`,
   text: `00 后小镇程序员
 👋.Net 开发工程师
-主要方向上位机开发，后端开发
+主要方向后端开发，上位机开发
 
-徒步登山爱好者🗻
-键盘组装员，游戏体验家
-
-想要寻找一种山野和城市的内在平衡`,
+徒步登山爱好者🗻`,
 });
 
 //feature部分
@@ -499,12 +496,20 @@ const shorts = reactive({
 
 const articles = reactive([
   {
+    url:'https://www.yuque.com/u39099012/wou7u4/qsvwu86cr3gsvtm3',
+    title:'EF Core和FreeSql',
+    content:`EF Core、Dapper、SqlSugar、FreeSql作为.Net主流的ORM框架
+    EF Core的设计理念和其他三种截然不同，这里用EF Core和FreeSql比较
+    从生命周期到流程进行分析讲述`,
+    blog_url:'',
+    time:'2024-10-06'
+  },
+  {
     url:'https://www.yuque.com/u39099012/wou7u4/ft2d2105x57q1uef',
     title:'Avalonia',
     content:`WPF的跨平台版本
     语法类似，学习成本低
-    可能是目前.Net平台下最好用的跨平台的UI框架
-    但还没有见到大型开源项目使用`,
+    可能是目前.Net平台下最好用的跨平台的UI框架`,
     blog_url:'',
     time:'2025-10-01'
   },
@@ -532,7 +537,7 @@ const articles = reactive([
     title:'NuGet vs dll',
     content:`一个项目、两个项目、多个项目
     引用了不同版本的dll，你有的方法，我没有
-    dll版本不一致，简直让人头大，别到处找dll文件了，用NuGet规范管理吧`,
+    dll版本不一致，简直让人头大，还要到处找dll文件了，使用NuGet进行规范化管理`,
     blog_url:'',
     time:'2025-10-08'
   },
@@ -560,7 +565,7 @@ const articles = reactive([
     content:`.Net程序员低成本开发Web应用
     和Vue类似，但目前生态不是很完善，仍然需要熟悉html+css+Js
     使用Razor语法可能比Vue指令更好理解，比较适合中小型的后台项目
-    没有专门的前端岗，一般都是.Net后端全栈在使用，和vue比较相似`,
+    没有对应的前端岗，一般都是.Net后端全栈在使用，和vue比较相似`,
     blog_url:'',
     time:'2024-09-06'
   }
