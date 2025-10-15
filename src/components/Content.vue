@@ -535,9 +535,11 @@ const articles = reactive([
   {
     url:'https://www.yuque.com/u39099012/wou7u4/yuivuhpx3qiidna1',
     title:'NuGet vs dll',
-    content:`一个项目、两个项目、多个项目
-    引用了不同版本的dll，你有的方法，我没有
-    dll版本不一致，简直让人头大，还要到处找dll文件了，使用NuGet进行规范化管理`,
+    content:`nupkg本质上是zip压缩包 + 规范
+    能够被NuGet客户端、Visual Studio、.Net CLI识别处理
+    相比dll，nupkg多了管理工具，更方便使用网络进行管理
+    设置nupkg包来源为服务器，就能在IDE中实时获取最新的包版本
+    更适合多人协作开发的场景`,
     blog_url:'',
     time:'2025-10-08'
   },
