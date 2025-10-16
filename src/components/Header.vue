@@ -6,7 +6,7 @@
                 <div class="flex flex-row items-center justify-start"> 
                     <a class="text-black hover:text-black/50 gap-2 md:gap-4 items-center tracking-tighter inline-flex font-bold text-lg md:text-xl" 
                     href="/" title="链接到主页" >
-                        <img src="/src/assets/avatar.jpg"
+                        <img src="http://cdn.buffz.top/avatar.jpg"
                             alt="头像" width="940" height="940" loading="lazy"
                             decoding="async" class="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover"> 
                         <span class="text-lg md:text-xl hidden sm:inline">{{sitename}}</span>
