@@ -252,7 +252,7 @@
       <MaskText :title="shorts.text" :description="shorts.description" />
 
       <div
-        class="columns-1 md:columns-2 xl:columns-3 gap-6 space-y-6 break-inside-avoid"
+        class="columns-1 md:columns-2 xl:columns-3 gap-6 space-y-6 break-inside-avoid px-3"
         >
         <a
           class="block"
