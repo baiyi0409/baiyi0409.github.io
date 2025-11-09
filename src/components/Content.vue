@@ -570,6 +570,14 @@ const articles = reactive([
     没有对应的前端岗，一般都是.Net后端全栈在使用，和vue比较相似`,
     blog_url:'',
     time:'2024-09-06'
+  },
+  {
+    url:'https://www.yuque.com/u39099012/wou7u4/thaness4vuphm2dw',
+    title:'MQTT 协议入门',
+    content:`MQTT 是一种基于发布/订阅模式的轻量级消息传输协议
+    专门为低带宽、高延迟或不稳定的网络环境设计，通常用于IoT项目、移动应用或需要实时消息推送的系统`,
+    blog_url:'',
+    time:'2025-09-01'
   }
 ])
 
