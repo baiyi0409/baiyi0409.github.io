@@ -194,34 +194,51 @@
   </div>
 
   <!-- 项目部分 -->
-  <footer class="overflow-hidden max-w-7xl mt-32 mx-auto dark:bg-neutral-900">
-    <div class="container px-4 sm:px-8 md:px-12 mx-auto max-w-5xl" >
+<footer class="overflow-hidden max-w-7xl mt-32 mx-auto dark:bg-neutral-900">
+  <div class="container px-4 sm:px-8 md:px-12 mx-auto max-w-5xl">
+    <div class="bg-white rounded-2xl sm:rounded-4xl py-6 sm:py-12 px-4 sm:px-16 border border-zinc-100 dark:border-zinc-800 dark:bg-neutral-800">
+      <!-- 外层：遍历年份 -->
       <div 
-        class="bg-white rounded-2xl sm:rounded-4xl py-6 sm:py-12 px-4 sm:px-16 border border-zinc-100 dark:border-zinc-800 dark:bg-neutral-800">
-        <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 w-full mb-6 last:mb-0" v-for="(item,index) in projects"  :key="index">
-          <h3
-            class="text-black dark:text-white text-base lg:text-xl font-medium mb-2 sm:mb-6 pt-1 sm:pt-2 leading-5 sticky top-0 bg-white dark:bg-neutral-800 py-2 sm:py-0 sm:static">
-            {{ item.year }} </h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-0 flex-1 w-full" > 
-            <div
-              :href="item.url"
-              class="px-3 sm:px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-700 flex flex-col text-zinc-500 dark:text-zinc-400 text-sm hover:text-black dark:hover:text-white transition-colors duration-200"
-              target="_blank" :title="item.description"> 
-              <span
-                class="leading-5 line-clamp-1 text-zinc-600 dark:text-zinc-400 text-sm font-medium"> {{ item.name }} </span> 
-                <span class="line-clamp-1 text-zinc-400 dark:text-zinc-500 text-xs sm:text-sm"> {{ item.description }} </span>
-            </div>
-            </div>
+        class="flex flex-col sm:flex-row gap-2 sm:gap-8 w-full mb-6 last:mb-0" 
+        v-for="(yearItem, index) in projects"  
+        :key="index"
+      >
+        <!-- 年份标题 -->
+        <h3
+          class="text-black dark:text-white text-base lg:text-xl font-medium mb-2 sm:mb-6 pt-1 sm:pt-2 leading-5 sticky top-0 bg-white dark:bg-neutral-800 py-2 sm:py-0 sm:static"
+        >
+          {{ yearItem.year }}
+        </h3>
+
+        <!-- 项目列表容器 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 flex-1 w-full">
+          <!-- 内层：遍历该年份下的每个项目 -->
+          <a
+            v-for="(project, pIndex) in yearItem.content"
+            :key="pIndex"
+            :href="project.url || '#'"
+            class="px-3 sm:px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-700 flex flex-col text-zinc-500 dark:text-zinc-400 text-sm hover:text-black dark:hover:text-white transition-colors duration-200"
+            target="_blank"
+            :title="project.description"
+          >
+            <span class="leading-5 line-clamp-1 text-zinc-600 dark:text-zinc-400 text-sm font-medium">
+              {{ project.name }}
+            </span>
+            <span class="line-clamp-1 text-zinc-400 dark:text-zinc-500 text-xs sm:text-sm">
+              {{ project.description }}
+            </span>
+          </a>
         </div>
       </div>
-      <div
-        class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-8 sm:mt-12 py-4 sm:py-6 border-t border-zinc-100 dark:border-zinc-800">
-        <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 text-center">
-          Designed by Nexmoe in Beijing
-        </p>
-      </div>
     </div>
-  </footer>
+
+    <div class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-8 sm:mt-12 py-4 sm:py-6 border-t border-zinc-100 dark:border-zinc-800">
+      <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 text-center">
+        Designed by Nexmoe in Beijing
+      </p>
+    </div>
+  </div>
+</footer>
 </template>
 
 <script setup lang="ts">
@@ -508,22 +525,61 @@ const articles = reactive([
 //项目部分  链接地址/年/项目名称/项目描述
 const projects = reactive([
   {
-    url:"",
     year:2025,
-    name:"文档识别录入系统",
-    description:"使用OpenCv获取图像数据，通过百度飞桨OCR光符识别SDK，提取并识别需要的数据字段，回填数据集，纳入数据库"
+    content:[
+      {    
+        url:"",
+        name:"文档识别录入系统",
+        description:"使用OpenCv获取图像数据，通过百度飞桨OCR光符识别SDK，提取并识别需要的数据字段，回填数据集，纳入数据库"
+      },
+      {
+        url:"",
+        name:"Avalonia 跨平台Linux Web浏览器",
+        description:"支持在Windows、Linux下进行网页访问的桌面端应用程序"
+      }
+    ]
+
   },
   {
-    url:"",
+    year:2024,
+    content:[
+      {
+        url:"https://github.com/baiyi0409/ModbusDemo",
+        name:"智能家居Modbus模拟",
+        description:"模拟串口通信控制家居参数"
+      }
+    ]
+  },
+  {
+    year:2023,
+    content:[
+      {    
+        url:"",
+        name:"NFC音乐指令工具",
+        description:"提供前端界面录入指令操作，通过NFC触发后台接口，SignalR进行通信启动音乐播放"
+      },
+    ]
+  },
+  {
+
     year:2022,
-    name:"数据决策系统",
-    description:"对客户提供人员权限管理，并根据用户权限，提供报表、图表可视化功能，支持多种格式的转换、导出、打印"
+    content:[
+      {    
+        url:"",
+        name:"数据决策系统",
+        description:"对客户提供人员权限管理，并根据用户权限，提供报表、图表可视化功能，支持多种格式的转换、导出、打印"
+      },
+    ]
   },
   {
-    url:"",
     year:2021,
-    name:"医院信息系统(HIS)",
-    description:"搭建医疗业务体系全流程信息化"
+    content:[
+      {    
+        url:"",
+        name:"医院信息系统(HIS)",
+        description:"搭建医疗业务体系全流程信息化"
+      },
+    ]
   }
 ])
 
