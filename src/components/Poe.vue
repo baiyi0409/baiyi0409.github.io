@@ -1,6 +1,6 @@
 <template>
   <div class="pin-spacer" ref="pinSpacerRef">
-    <div id="elePoe" class="body h-screen" :class="{ 'is-pinned': isPinned }">
+    <div id="elePoe" class="body h-screen"  :class="{ 'is-pinned': isPinned }">
       <div
         id="animationContainer"
         class="h-screen relative flex flex-row items-center justify-center gap-2"
@@ -139,7 +139,7 @@ const getPoemOpacity = (index: number) => {
 .pin-spacer {
   position: relative;
   width: 100%;
-  height: 300vh;
+  height: 220vh;
 }
 
 .body {
@@ -147,7 +147,7 @@ const getPoemOpacity = (index: number) => {
 }
 
 .is-pinned {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;

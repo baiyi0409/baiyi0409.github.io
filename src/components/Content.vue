@@ -1,19 +1,14 @@
 <template>
   <div class="space-y-24 md:space-y-32 lg:space-y-40 pt-32">
     <!-- 顶部导航栏 -->
-    <div
-      id="float-nav-container"
-      class="fixed bottom-0 left-1/2 -translate-x-1/2 md:top-4 md:bottom-auto z-50 transition-opacity duration-300"
-    >
+    <div id="float-nav-container"
+      class="fixed bottom-0 left-1/2 -translate-x-1/2 md:top-4 md:bottom-auto z-50 transition-opacity duration-300">
       <nav
-        class="bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-800 dark:to-neutral-900 rounded-full shadow-lg px-3 py-2"
-      >
+        class="bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-800 dark:to-neutral-900 rounded-full shadow-lg px-3 py-2">
         <ul class="flex flex-row items-center space-x-2">
           <li v-for="(item, index) in navItems" :key="index">
-            <button
-              :data-nav-id="item.id"
-              class="nav-button rounded-full text-sm transition-all duration-300 whitespace-nowrap px-3 py-1.5 w-full text-neutral-500 hover:text-primary/80 hover:bg-primary/10 dark:hover:bg-neutral-800"
-            >
+            <button :data-nav-id="item.id"
+              class="nav-button rounded-full text-sm transition-all duration-300 whitespace-nowrap px-3 py-1.5 w-full text-neutral-500 hover:text-primary/80 hover:bg-primary/10 dark:hover:bg-neutral-800">
               {{ item.label }}
             </button>
           </li>
@@ -26,42 +21,25 @@
         <div class="flex flex-col items-center md:items-start gap-6 sm:gap-8">
           <!-- 头像 -->
           <div class="flex-shrink-0">
-            <img
-              src="https://cdn.buffz.top/avatar.jpg"
-              infersize="true"
-              alt="yao"
-              width="940"
-              height="940"
-              loading="lazy"
-              decoding="async"
-              class="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full object-cover border-2 border-zinc-200 shadow-sm"
-            />
+            <img src="https://cdn.buffz.top/avatar.jpg" infersize="true" alt="yao" width="940" height="940"
+              loading="lazy" decoding="async"
+              class="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full object-cover border-2 border-zinc-200 shadow-sm" />
           </div>
           <!-- 介绍 -->
-          <div
-            class="flex flex-col md:px-4 items-center md:items-start text-center md:text-left w-full"
-          >
-            <h1
-              class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-2 leading-tight"
-            >
+          <div class="flex flex-col md:px-4 items-center md:items-start text-center md:text-left w-full">
+            <h1 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-2 leading-tight">
               {{ hero.name }}
             </h1>
             <div class="mb-6 w-full">
               <p
-                class="text-gray-800 dark:text-gray-300 whitespace-pre-wrap text-sm sm:text-base leading-relaxed max-w-prose"
-              >
+                class="text-gray-800 dark:text-gray-300 whitespace-pre-wrap text-sm sm:text-base leading-relaxed max-w-prose">
                 {{ hero.text }}
               </p>
             </div>
-            <a
-              class="-ml-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 sm:px-3 sm:py-1 text-sm leading-6 text-black ring-1 ring-zinc-200 bg-white ring-inset hover:bg-zinc-50 active:bg-zinc-100 transition-colors duration-200 touch-manipulation min-h-[44px] sm:min-h-auto"
-              target="_blank"
-              href=""
-            >
+            <a class="-ml-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 sm:px-3 sm:py-1 text-sm leading-6 text-black ring-1 ring-zinc-200 bg-white ring-inset hover:bg-zinc-50 active:bg-zinc-100 transition-colors duration-200 touch-manipulation min-h-[44px] sm:min-h-auto"
+              target="_blank" href="">
               联系我
-              <div
-                class="h-2 w-2 rounded-full bg-black border-2 border-black"
-              ></div>
+              <div class="h-2 w-2 rounded-full bg-black border-2 border-black"></div>
               <div class="h-2 w-2 rounded-full border-black border-2"></div>
             </a>
             <!-- {socials && (
@@ -86,13 +64,9 @@
     <div id="feature">
       <MaskText :title="feature.text" :description="feature.description" />
 
-      <div
-        class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4 p-4 md:p-0"
-      >
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4 p-4 md:p-0">
         <!-- Hero Card -->
-        <div
-          class="col-span-12 md:col-span-12 grid grid-cols-1 md:grid-cols-[8fr_4fr] gap-4"
-        >
+        <div class="col-span-12 md:col-span-12 grid grid-cols-1 md:grid-cols-[8fr_4fr] gap-4">
           <div class="bg-white rounded-2xl p-5 flex flex-col justify-between">
             <!-- 基本信息 -->
             <div class="h-full flex flex-col justify-between">
@@ -108,28 +82,14 @@
               </div>
               <div>
                 <!-- 联系方式 -->
-                <div
-                  class="flex flex-row flex-wrap gap-2 mb-4"
-                  v-for="(item, index) in feature_herocard.linkList"
-                  :key="index"
-                >
-                  <a
-                    :href="item.link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="block"
-                  >
+                <div class="flex flex-row flex-wrap gap-2 mb-4" v-for="(item, index) in feature_herocard.linkList"
+                  :key="index">
+                  <a :href="item.link" target="_blank" rel="noopener noreferrer" class="block">
                     <div
-                      class="bg-zinc-100 text-gray-600 hover:bg-zinc-200 transition-all duration-200 cursor-pointer rounded-full px-3 py-2 flex flex-row items-center gap-1.5"
-                    >
+                      class="bg-zinc-100 text-gray-600 hover:bg-zinc-200 transition-all duration-200 cursor-pointer rounded-full px-3 py-2 flex flex-row items-center gap-1.5">
                       <span>
-                        <svg
-                          class="w-4 h-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                        >
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24">
                           <path fill="currentColor" :d="item.path"></path>
                         </svg>
                       </span>
@@ -140,23 +100,10 @@
 
                 <!-- 标签   -->
                 <div class="flex flex-wrap gap-2">
-                  <span
-                    v-for="(item, index) in feature_herocard.tagList"
-                    :key="index"
-                    class="px-3 py-1.5 bg-gray-100 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2"
-                  >
-                    <svg
-                      class="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        :d="item.path"
-                      ></path>
+                  <span v-for="(item, index) in feature_herocard.tagList" :key="index"
+                    class="px-3 py-1.5 bg-gray-100 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="item.path"></path>
                     </svg>
                     {{ item.tag }}
                   </span>
@@ -166,20 +113,11 @@
           </div>
 
           <div class="bg-white rounded-2xl p-5 flex flex-col justify-between min-h-[150px]">
-            <div
-              class="relative h-full overflow-hidden rounded-xl to-indigo-50"
-            >
-              <div
-                class="absolute w-full top-0 left-0 animate-scroll"
-                :class="{ paused: !isScrolling }"
-                @mouseenter="pauseScroll"
-                @mouseleave="resumeScroll"
-              >
-                <div
-                  v-for="(event, index) in duplicatedEvents"
-                  :key="index"
-                  class="px-4 py-3 mx-2 my-2 bg-white cursor-pointer transform hover:scale-[1.02]"
-                >
+            <div class="relative h-full overflow-hidden rounded-xl to-indigo-50">
+              <div class="absolute w-full top-0 left-0 animate-scroll" :class="{ paused: !isScrolling }"
+                @mouseenter="pauseScroll" @mouseleave="resumeScroll">
+                <div v-for="(event, index) in duplicatedEvents" :key="index"
+                  class="px-4 py-3 mx-2 my-2 bg-white cursor-pointer transform hover:scale-[1.02]">
                   <div class="font-medium text-gray-900 truncate">
                     {{ event.title }}
                   </div>
@@ -194,21 +132,15 @@
         </div>
 
         <!-- Movie -->
-        <div
-          class="col-span-12 md:col-span-12 md:row-span-2 bg-white rounded-2xl p-5 flex flex-col justify-between"
-        >
+        <div class="col-span-12 md:col-span-12 md:row-span-2 bg-white rounded-2xl p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold text-gray-800">
               {{ feature_movie.title }}
             </h3>
             <div class="flex items-center flex-fow gap-2">
               <div class="flex flex-wrap gap-2">
-                <span
-                  v-for="(item, index) in feature_movie.tagList"
-                  :key="index"
-                  class="px-2.5 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600"
-                  >{{ item }}</span
-                >
+                <span v-for="(item, index) in feature_movie.tagList" :key="index"
+                  class="px-2.5 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600">{{ item }}</span>
               </div>
               <div class="text-sm text-gray-500">{{ feature_movie.count }}</div>
             </div>
@@ -216,29 +148,15 @@
 
           <div class="grid grid-cols-6 gap-2">
             <!-- 渲染真实海报 -->
-            <a
-              v-for="(item, index) in feature_movie.movieList"
-              :key="index"
-              :href="item.href"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a v-for="(item, index) in feature_movie.movieList" :key="index" :href="item.href" target="_blank"
+              rel="noopener noreferrer">
               <div
-                class="bg-gray-200 rounded-sm overflow-hidden hover:scale-105 hover:shadow-md transition-all duration-200 ease-in-out aspect-[135/188]"
-              >
+                class="bg-gray-200 rounded-sm overflow-hidden hover:scale-105 hover:shadow-md transition-all duration-200 ease-in-out aspect-[135/188]">
                 <picture>
                   <source :srcset="item.webp" type="image/webp" />
                   <source :srcset="item.avif" type="image/avif" />
-                  <img
-                    :src="item.img"
-                    :alt="item.title"
-                    :title="item.title"
-                    loading="lazy"
-                    width="270"
-                    height="382"
-                    decoding="async"
-                    class="w-full h-full object-cover"
-                  />
+                  <img :src="item.img" :alt="item.title" :title="item.title" loading="lazy" width="270" height="382"
+                    decoding="async" class="w-full h-full object-cover" />
                 </picture>
               </div>
             </a>
@@ -251,15 +169,8 @@
     <div id="shorts" class="container max-w-6xl mx-auto">
       <MaskText :title="shorts.text" :description="shorts.description" />
 
-      <div
-        class="columns-1 md:columns-2 xl:columns-3 gap-6 space-y-6 break-inside-avoid px-3"
-        >
-        <a
-          class="block"
-          target="_blank"
-          v-for="(article,index) in articles" :key="index"
-          :href="article.url"
-        >
+      <div class="columns-1 md:columns-2 xl:columns-3 gap-6 space-y-6 break-inside-avoid px-3">
+        <a class="block" target="_blank" v-for="(article, index) in articles" :key="index" :href="article.url">
           <div class="h-full overflow-auto bg-white rounded-2xl p-5">
             <div class="p-1 mt-4 whitespace-pre-line">
               {{ article.title }}
@@ -267,11 +178,8 @@
               {{ article.content }}
               <br />
               {{ article.blog_url }}
-              <div
-                class="text-xs text-gray-400 relative-time"
-                data-date="2025-08-22T23:00:35.000Z"
-              >
-              {{article.time }}
+              <div class="text-xs text-gray-400 relative-time" data-date="2025-08-22T23:00:35.000Z">
+                {{ article.time }}
               </div>
             </div>
           </div>
@@ -285,14 +193,30 @@
     </div>
   </div>
 
+  <!-- 项目部分 -->
   <footer class="overflow-hidden max-w-7xl mt-32 mx-auto dark:bg-neutral-900">
-    <div class="container px-4 sm:px-8 md:px-12 mx-auto max-w-5xl">
+    <div class="container px-4 sm:px-8 md:px-12 mx-auto max-w-5xl" >
+      <div 
+        class="bg-white rounded-2xl sm:rounded-4xl py-6 sm:py-12 px-4 sm:px-16 border border-zinc-100 dark:border-zinc-800 dark:bg-neutral-800">
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 w-full mb-6 last:mb-0" v-for="(item,index) in projects"  :key="index">
+          <h3
+            class="text-black dark:text-white text-base lg:text-xl font-medium mb-2 sm:mb-6 pt-1 sm:pt-2 leading-5 sticky top-0 bg-white dark:bg-neutral-800 py-2 sm:py-0 sm:static">
+            {{ item.year }} </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-0 flex-1 w-full" > 
+            <div
+              :href="item.url"
+              class="px-3 sm:px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-700 flex flex-col text-zinc-500 dark:text-zinc-400 text-sm hover:text-black dark:hover:text-white transition-colors duration-200"
+              target="_blank" :title="item.description"> 
+              <span
+                class="leading-5 line-clamp-1 text-zinc-600 dark:text-zinc-400 text-sm font-medium"> {{ item.name }} </span> 
+                <span class="line-clamp-1 text-zinc-400 dark:text-zinc-500 text-xs sm:text-sm"> {{ item.description }} </span>
+            </div>
+            </div>
+        </div>
+      </div>
       <div
-        class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-8 sm:mt-12 py-4 sm:py-6 border-t border-zinc-100 dark:border-zinc-800"
-      >
-        <p
-          class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 text-center"
-        >
+        class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-8 sm:mt-12 py-4 sm:py-6 border-t border-zinc-100 dark:border-zinc-800">
+        <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 text-center">
           Designed by Nexmoe in Beijing
         </p>
       </div>
@@ -496,92 +420,112 @@ const shorts = reactive({
 
 const articles = reactive([
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/qsvwu86cr3gsvtm3',
-    title:'EF Core和FreeSql',
-    content:`EF Core、Dapper、SqlSugar、FreeSql作为.Net主流的ORM框架
+    url: 'https://www.yuque.com/u39099012/wou7u4/qsvwu86cr3gsvtm3',
+    title: 'EF Core和FreeSql',
+    content: `EF Core、Dapper、SqlSugar、FreeSql作为.Net主流的ORM框架
     EF Core的设计理念和其他三种截然不同，这里用EF Core和FreeSql比较
     从生命周期到流程进行分析讲述`,
-    blog_url:'',
-    time:'2024-10-06'
+    blog_url: '',
+    time: '2024-10-06'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/ft2d2105x57q1uef',
-    title:'Avalonia',
-    content:`WPF的跨平台版本
+    url: 'https://www.yuque.com/u39099012/wou7u4/ft2d2105x57q1uef',
+    title: 'Avalonia',
+    content: `WPF的跨平台版本
     语法类似，学习成本低
     可能是目前.Net平台下最好用的跨平台的UI框架`,
-    blog_url:'',
-    time:'2025-10-01'
+    blog_url: '',
+    time: '2025-10-01'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/zkqonkaxca6dat71',
-    title:'MVVM Tookit',
-    content:`Model View ViewModel
+    url: 'https://www.yuque.com/u39099012/wou7u4/zkqonkaxca6dat71',
+    title: 'MVVM Tookit',
+    content: `Model View ViewModel
     当模型和视图有了绑定关系
     当业务需求发生变化，只需要修改视图模型中的业务逻辑
     最大程度的解耦前后端的关联，即使放到现在也是主流的设计模式`,
-    blog_url:'',
-    time:'2025-04-25'
+    blog_url: '',
+    time: '2025-04-25'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/zmit4gig4r7s09bz',
-    title:'Ollama + Anything LLM 搭建本地AIChat应用',
-    content:`Ollama提供了大模型运行的平台，可以使大模型进行本地部署
+    url: 'https://www.yuque.com/u39099012/wou7u4/zmit4gig4r7s09bz',
+    title: 'Ollama + Anything LLM 搭建本地AIChat应用',
+    content: `Ollama提供了大模型运行的平台，可以使大模型进行本地部署
     而目前市面上出现了五花八门的客户端应用，本质上的调用都是一样的
     github上类似的开源项目已经层出不穷了...`,
-    blog_url:'',
-    time:'2025-02-08'
+    blog_url: '',
+    time: '2025-02-08'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/yuivuhpx3qiidna1',
-    title:'NuGet vs dll',
-    content:`nupkg本质上是zip压缩包 + 规范
+    url: 'https://www.yuque.com/u39099012/wou7u4/yuivuhpx3qiidna1',
+    title: 'NuGet vs dll',
+    content: `nupkg本质上是zip压缩包 + 规范
     能够被NuGet客户端、Visual Studio、.Net CLI识别处理
     相比dll，nupkg多了管理工具，更方便使用网络进行管理
     设置nupkg包来源为服务器，就能在IDE中实时获取最新的包版本
     更适合多人协作开发的场景`,
-    blog_url:'',
-    time:'2025-10-08'
+    blog_url: '',
+    time: '2025-10-08'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/gtn0btv0y3y45myb',
-    title:'工业通信协议',
-    content:`相比于网络的WebSocket、Http这些通信协议
+    url: 'https://www.yuque.com/u39099012/wou7u4/gtn0btv0y3y45myb',
+    title: '工业通信协议',
+    content: `相比于网络的WebSocket、Http这些通信协议
     工业通信往往在没有网络的情况下进行，将设备机的COM口和上位机COM口进行连接
     就能读取数据，从一开始的串口通信、Modbus协议，到现在带有网络参与的MQTT协议
     工业通信也逐渐现代网络化...`,
-    blog_url:'',
-    time:'2025-06-29'
+    blog_url: '',
+    time: '2025-06-29'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/xomzyr5qhrasiv6c',
-    title:'客户端自动更新',
-    content:`翻阅了.Net客户端自动更新开源项目博主的博客
+    url: 'https://www.yuque.com/u39099012/wou7u4/xomzyr5qhrasiv6c',
+    title: '客户端自动更新',
+    content: `翻阅了.Net客户端自动更新开源项目博主的博客
     虽然有的项目很久不更新了，但思路还是蛮现代的...`,
-    blog_url:'',
-    time:'2025-05-09'
+    blog_url: '',
+    time: '2025-05-09'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/wq9rxsgu9ggifhhn',
-    title:'Blazor .Net跨平台Web方案',
-    content:`.Net程序员低成本开发Web应用
+    url: 'https://www.yuque.com/u39099012/wou7u4/wq9rxsgu9ggifhhn',
+    title: 'Blazor .Net跨平台Web方案',
+    content: `.Net程序员低成本开发Web应用
     和Vue类似，但目前生态不是很完善，仍然需要熟悉html+css+Js
     使用Razor语法可能比Vue指令更好理解，比较适合中小型的后台项目
     没有对应的前端岗，一般都是.Net后端全栈在使用，和vue比较相似`,
-    blog_url:'',
-    time:'2024-09-06'
+    blog_url: '',
+    time: '2024-09-06'
   },
   {
-    url:'https://www.yuque.com/u39099012/wou7u4/thaness4vuphm2dw',
-    title:'MQTT 协议入门',
-    content:`MQTT 是一种基于发布/订阅模式的轻量级消息传输协议
+    url: 'https://www.yuque.com/u39099012/wou7u4/thaness4vuphm2dw',
+    title: 'MQTT 协议入门',
+    content: `MQTT 是一种基于发布/订阅模式的轻量级消息传输协议
     专门为低带宽、高延迟或不稳定的网络环境设计，通常用于IoT项目、移动应用或需要实时消息推送的系统`,
-    blog_url:'',
-    time:'2025-09-01'
+    blog_url: '',
+    time: '2025-09-01'
   }
 ])
 
-
+//项目部分  链接地址/年/项目名称/项目描述
+const projects = reactive([
+  {
+    url:"",
+    year:2025,
+    name:"文档识别录入系统",
+    description:"使用OpenCv获取图像数据，通过百度飞桨OCR光符识别SDK，提取并识别需要的数据字段，回填数据集，纳入数据库"
+  },
+  {
+    url:"",
+    year:2022,
+    name:"数据决策系统",
+    description:"对客户提供人员权限管理，并根据用户权限，提供报表、图表可视化功能，支持多种格式的转换、导出、打印"
+  },
+  {
+    url:"",
+    year:2021,
+    name:"医院信息系统(HIS)",
+    description:"搭建医疗业务体系全流程信息化"
+  }
+])
 
 // 响应式：当前激活区块
 const activeSectionId = ref("top");
@@ -697,8 +641,10 @@ onUnmounted(() => {
   0% {
     transform: translateY(0%);
   }
+
   100% {
     transform: translateY(-50%);
   }
 }
+
 </style>
