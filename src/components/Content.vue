@@ -112,6 +112,7 @@
             </div>
           </div>
 
+          <!-- 技术栈 -->
           <div class="bg-white rounded-2xl p-5 flex flex-col justify-between min-h-[150px]">
             <div class="relative h-full overflow-hidden rounded-xl to-indigo-50">
               <div class="absolute w-full top-0 left-0 animate-scroll" :class="{ paused: !isScrolling }"
@@ -131,8 +132,18 @@
           </div>
         </div>
 
+
+
         <!-- Movie -->
-        <div class="col-span-12 md:col-span-12 md:row-span-2 bg-white rounded-2xl p-5 flex flex-col justify-between">
+        <div class="col-span-12 md:col-span-12 grid grid-cols-1 md:grid-cols-[4fr_8fr] gap-4">
+          <div class="md:row-span-2 bg-white rounded-2xl p-5 flex flex-col justify-between ">
+            <h3 class="text-lg font-semibold text-gray-800">
+              足迹
+            </h3>
+            <Globe />
+          </div>
+
+          <div class="md:row-span-2 bg-white rounded-2xl p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold text-gray-800">
               {{ feature_movie.title }}
@@ -161,7 +172,9 @@
               </div>
             </a>
           </div>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -247,6 +260,7 @@ import MaskText from "./MaskText.vue";
 import Poe from "./Poe.vue";
 import BulletScreen from "./BulletScreen.vue";
 import { useTitle } from "@vueuse/core";
+import Globe from './Globe.vue'
 
 // 导航配置
 const navItems = [
