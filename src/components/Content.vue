@@ -15,6 +15,7 @@
         </ul>
       </nav>
     </div>
+
     <!-- hero部分 -->
     <div id="hero" class="container mx-auto">
       <section class="w-full max-w-sm mx-auto px-8 sm:px-6">
@@ -245,7 +246,7 @@
       </div>
     </div>
 
-    <div class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-8 sm:mt-12 py-4 sm:py-6 border-t border-zinc-100 dark:border-zinc-800">
+    <div class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-32 sm:mt-12 py-4 sm:py-6 border-t border-zinc-100 dark:border-zinc-800">
       <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 text-center">
         Designed by Nexmoe in Beijing
       </p>
@@ -687,6 +688,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+
 .whitespace-pre-wrap {
   white-space: pre-wrap;
 }

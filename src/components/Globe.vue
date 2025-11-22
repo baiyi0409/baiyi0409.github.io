@@ -80,9 +80,9 @@ onMounted(() => {
     onRender: (state) => {
       // 平滑过渡到目标角度
       phi.value += (targetPhi.value - phi.value) * SMOOTH_FACTOR
-      theta.value += (targetTheta.value - theta.value) * SMOOTH_FACTOR
+      //theta.value += (targetTheta.value - theta.value) * SMOOTH_FACTOR
       state.phi = phi.value
-      state.theta = theta.value
+      //state.theta = theta.value
     },
   })
 
@@ -173,11 +173,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full max-w-[600px] aspect-square mx-auto relative">
+  <div class="w-full max-w-[300px] aspect-square mx-auto relative">
     <canvas
       ref="canvasEl"
       class="w-full h-full opacity-0 transition-opacity duration-500 cursor-grab"
-      style="contain: layout paint size" />
+      style="width: 300px; height: 300px;" />
   </div>
 </template>
 
