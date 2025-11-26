@@ -6,7 +6,7 @@
       <nav
         class="bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-800 dark:to-neutral-900 rounded-full shadow-lg px-3 py-2">
         <ul class="flex flex-row items-center space-x-2">
-          <li v-for="(item, index) in navItems" :key="index">
+          <li v-for="(item, index) in store.navItems" :key="index">
             <button :data-nav-id="item.id"
               class="nav-button rounded-full text-sm transition-all duration-300 whitespace-nowrap px-3 py-1.5 w-full text-neutral-500 hover:text-primary/80 hover:bg-primary/10 dark:hover:bg-neutral-800">
               {{ item.label }}
@@ -262,14 +262,18 @@ import Poe from "./Poe.vue";
 import BulletScreen from "./BulletScreen.vue";
 import { useTitle } from "@vueuse/core";
 import Globe from './Globe.vue'
+import { homeStore } from '../stores'
+
+const store = homeStore();
+
 
 // 导航配置
-const navItems = [
-  { id: "top", label: "返回顶部", offset: 0 },
-  { id: "feature", label: "了解下我", offset: -80 },
-  { id: "shorts", label: "最新动态", offset: -80 },
-  { id: "poe", label: "信条", offset: -80 },
-];
+// const navItems = [
+//   { id: "top", label: "返回顶部", offset: 0 },
+//   { id: "feature", label: "了解下我", offset: -80 },
+//   { id: "shorts", label: "最新动态", offset: -80 },
+//   { id: "poe", label: "信条", offset: -80 },
+// ];
 
 //hero介绍
 const hero = reactive({
@@ -638,7 +642,7 @@ const onScroll = () => {
     const scrollPosition = window.scrollY + 100; // 增加100px缓冲，更早激活
     let currentActiveId = "top";
 
-    for (const item of navItems) {
+    for (const item of store.navItems) {
       if (item.id === "top") continue;
 
       const element = document.getElementById(item.id);
@@ -667,7 +671,7 @@ const initializeNavigation = () => {
     const id = button.getAttribute("data-nav-id");
     if (id) {
       button.addEventListener("click", () => {
-        const item = navItems.find((nav) => nav.id === id);
+        const item = store.navItems.find((nav) => nav.id === id);
         if (item) scrollToSection(item.id, item.offset);
       });
     }
